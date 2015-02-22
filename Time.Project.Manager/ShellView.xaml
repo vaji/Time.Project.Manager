@@ -2,11 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Grid Background="White">
-        <TextBlock Text="Hello Caliburn Micro!"
+    <Grid Background="White" RenderTransformOrigin="0.509,0.117">
+        <TextBlock Text="Gear - Project Manager"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   FontSize="20" />
+                   FontSize="20" Margin="281,10,241,468" RenderTransformOrigin="0.522,-3.687" Width="238" />
     </Grid>
 
 </Window>
