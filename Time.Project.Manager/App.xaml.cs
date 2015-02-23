@@ -2,7 +2,6 @@
 namespace Time.Project.Manager
 {
     using System.Windows;
-
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -10,7 +9,7 @@ namespace Time.Project.Manager
     {
         public App()
         {
-            InitializeComponent();
+           
         }
     }
 }

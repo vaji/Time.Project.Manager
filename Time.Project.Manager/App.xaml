@@ -3,10 +3,19 @@
              xmlns:local="clr-namespace:Time.Project.Manager"
              x:Class="Time.Project.Manager.App">
     <Application.Resources>
+        
+        
+       
         <ResourceDictionary>
+
+          
+            
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <local:AppBootstrapper x:Key="bootstrapper" />
+
+                
+
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
