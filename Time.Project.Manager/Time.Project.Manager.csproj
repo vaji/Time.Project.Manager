@@ -63,12 +63,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Globals.cs" />
     <Compile Include="IShell.cs" />
+    <Compile Include="ShellView.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TPMP_Project.cs" />
+    <Compile Include="TPMP_ProjectManager.cs" />
+    <Compile Include="TPMP_Prompt.cs" />
     <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
