@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Time.Project.Manager.SelectProjectView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="375" d:DesignWidth="650" Background="Black">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+       
+        <StackPanel Grid.Column="0">
+
+            <TextBlock Text="Find existing project..." Foreground="White" FontFamily="Calibri" FontSize="16" HorizontalAlignment="Center" Margin="-5,20,0,0" />
+            <TextBox Name="findProj_Label" TextChanged="FinderConstraint"  Background="LightGray" Width="150" Margin="0,0,0,0" FontFamily="Calibri"/>
+            <ListBox Name="findProj_Finder"  Background="LightGray" Width="150" FontFamily="Calibri" Margin="0,15,0,0" Height="150" Foreground="Black"  FontSize="14"/>
+        
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Favourites" Foreground="White" FontFamily="Calibri" FontSize="16" HorizontalAlignment="Left" Margin="88,20,0,0" />
+            <TextBox Name="findProj_fav" Background="LightGray" Width="150" FontFamily="Calibri" Margin="0,0,0,0" Height="75" IsReadOnly="True"/>
+
+            <TextBlock Text="Recent" Foreground="White" FontFamily="Calibri" FontSize="16" HorizontalAlignment="Left" Margin="88,7,0,0" />
+            <TextBox Name="findProj_recent" Background="LightGray" Width="150" FontFamily="Calibri" Margin="0,0,0,0" Height="75" IsReadOnly="True"/>
+            <Button 
+                Click="btnSelect"
+                BorderBrush="Black"               
+                FontFamily="Calibri"
+                FontSize="18"
+                x:Name="butManage" 
+                Background="LimeGreen"
+                Width="100"
+                Height="40"
+                Margin="10,10,10,10">
+                <StackPanel>
+                    <Image Source="assets/settings.png" Width="30"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -7,13 +7,16 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Documents;
 using System.Windows.Media;
+using Microsoft.Win32;
+using System.IO;
+
 
 namespace Time.Project.Manager
 {
     class TPMP_Prompt
     {
-        public TextBlock prompt;
-        public TextBox commandline;
+        public System.Windows.Controls.TextBlock prompt;
+        public System.Windows.Controls.TextBox commandline;
         private int prompt_lines_max = 11;
         private int prompt_lines_used = 1;
         private List<int> prompt_lines_length = new List<int>();
@@ -22,8 +25,8 @@ namespace Time.Project.Manager
 
         public TPMP_Prompt()
         {
-            prompt = App.Current.MainWindow.FindName("prompt") as TextBlock;
-            commandline = App.Current.MainWindow.FindName("commandline") as TextBox;
+            prompt = App.Current.MainWindow.FindName("prompt") as System.Windows.Controls.TextBlock;
+            commandline = App.Current.MainWindow.FindName("commandline") as System.Windows.Controls.TextBox;
             prompt_lines_length.Add(23);
             prompt_lines_used = 1;
         }
@@ -81,23 +84,54 @@ namespace Time.Project.Manager
             {
                 if (cmd.Substring(0, 3) == "new")
                 {
-                    Globals.projectManager.Create_New_Project(cmd.Substring(3, cmd.Length - 3));
+                    Globals.projectManager.Create_New_Project(cmd.Substring(4, cmd.Length - 4));
                     is_cmd = true;
-
+                }
+                // set command
+                if (cmd.Substring(0, 3) == "set")
+                {
+                    
+                    if (cmd.Length >= 13)
+                    { 
+                        if(cmd.Substring(4,cmd.Length-4) == "root_path")
+                        {
+                            is_cmd = true;
+                            Globals.projectManager.Set_New_Root_Path(); // this is fine.
+                        
+                        }
+                    }
                 }
             }
             if (cmd.Length >= 6)
             {
                 if (cmd.Substring(0, 6) == "select")
                 {
-
-                    string tmpName = cmd.Substring(6, cmd.Length - 6);
+                     // TO-DO do this stuff in PROJECT MANAGER god damn it.. 
+                    string tmpName = cmd.Substring(7, cmd.Length - 7);
                     bool succed = false;
                     foreach (TPMP_Project value in Globals.listProjects)
                     {
                         if (value.name == tmpName) { Globals.activeProject = value; succed = true; break; }
                     }
                     if (succed) Prompt_Text("Selected " + Globals.activeProject.name + " as active project", true);
+                    else Prompt_Text("Project " + tmpName + " not found, sir", true);
+                    is_cmd = true;
+                }
+                if (cmd.Substring(0, 6) == "delete")
+                { // this stuff als in project manager!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    string tmpName = cmd.Substring(7, cmd.Length - 7);
+                    bool succed = false;
+                    foreach (TPMP_Project value in Globals.listProjects)
+                    {
+                        if (value.name == tmpName) {succed = true; break; }
+                    }
+                    if (succed)
+                    {
+                        if (Globals.projectManager.DeleteProject(tmpName))
+                        {
+                            Prompt_Text("Deleted " + tmpName + " project", true);
+                        }
+                    }
                     else Prompt_Text("Project " + tmpName + " not found, sir", true);
                     is_cmd = true;
                 }
