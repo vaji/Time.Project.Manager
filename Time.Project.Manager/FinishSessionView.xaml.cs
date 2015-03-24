@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace Time.Project.Manager
 {
     /// <summary>
-    /// Interaction logic for ManageView.xaml
+    /// Interaction logic for FinishSessionView.xaml
     /// </summary>
-    public partial class ManageView : UserControl
+    public partial class FinishSessionView : UserControl
     {
-        public ManageView()
+        public FinishSessionView()
         {
             InitializeComponent();
-        }
-
-        public void btnLogView(object sender, RoutedEventArgs e)
-        {
-            Globals.mainView.btnManageView_Log();
-        }
-
-        private void butShowLog_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

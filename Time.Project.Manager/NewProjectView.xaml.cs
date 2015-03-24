@@ -29,7 +29,7 @@ namespace Time.Project.Manager
         {
             if(newProj_name_box.Text != null && newProj_name_box.Text != "")
             {
-                Globals.projectManager.Create_New_Project(newProj_name_box.Text,newProj_type_box.Text,newProj_desc_box.Text);
+                TPMP_ProjectManager.Instance.Create_New_Project(newProj_name_box.Text,newProj_type_box.Text,newProj_desc_box.Text);
             } else
             {
                 MessageBox.Show("Project name cannot be empty, sir!");

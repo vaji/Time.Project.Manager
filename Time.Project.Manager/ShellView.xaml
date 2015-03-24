@@ -35,12 +35,28 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-
             <Button 
-                Click="btnManage"
-              
                 BorderBrush="Black"               
                 Grid.Column="0"
+                Grid.Row="0"
+                Click="LocalButtonClick"
+                FontFamily="Calibri"
+                FontSize="18"
+                x:Name="butHome" 
+                Background="DodgerBlue"
+                Width="100"
+                Height="100"
+                Margin="10,10,10,10">
+                <StackPanel>
+                    <Image Source="assets/home.png" Width="45"/>
+                </StackPanel>
+            </Button>
+            
+            <Button 
+                Click="LocalButtonClick"
+              
+                BorderBrush="Black"               
+                Grid.Column="1"
                 Grid.Row="0"
                 
                 FontFamily="Calibri"
@@ -55,9 +71,9 @@
                 </StackPanel>
             </Button>
             <Button 
-                Grid.Column="1"
-                Grid.Row="0"
-                Click="btnSelectProject"
+                Grid.Column="0"
+                Grid.Row="1"
+                Click="LocalButtonClick"
                 BorderBrush="Black"
                 FontFamily="Calibri"
                 FontSize="18"
@@ -67,14 +83,14 @@
                 Height="100"
                 Margin="10,10,10,10">
                 <StackPanel>
-                    <Image Source="assets/settings.png" Width="45"/>
+                    <Image Source="assets/find.png" Width="45"/>
                 </StackPanel>
             </Button>
 
             <Button 
-                Grid.Column="0"
+                Grid.Column="1"
                 Grid.Row="1"
-                Click="btnNewProject"
+                Click="LocalButtonClick"
                 BorderBrush="Black"
                 FontFamily="Calibri"
                 FontSize="16"
@@ -89,8 +105,25 @@
             </Button>
 
             <Button 
+                Grid.Column="0"
+                Grid.Row="2"
+                Click="LocalButtonClick"
+                BorderBrush="Black"
+                FontFamily="Calibri"
+                FontSize="16"
+                x:Name="butTasks" 
+                Background="Gold"
+                Width="100"
+                Height="100"
+                Margin="10,10,10,10">
+                <StackPanel>
+                    <Image Source="assets\tasks_new.png" Width="55" Margin="4,0,0,0"/>
+                </StackPanel>
+            </Button>
+            
+            <Button 
                 Grid.Column="1"
-                Grid.Row="1"
+                Grid.Row="2"
                 BorderBrush="Black"
                 FontFamily="Calibri"
                 FontSize="16"
@@ -125,15 +158,30 @@
             <TextBlock Text="ACTIVE PROJECT" Foreground="Wheat" HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center" FontSize="20" Width="200"/>
             <TextBlock Name="actProj_name" Text="Name" Foreground="White" HorizontalAlignment="Center"  TextAlignment="Center" FontSize="20" Width="200"/>
             <TextBlock Name="actProj_type" Text="type" Foreground="Gray" HorizontalAlignment="Center"  TextAlignment="Center" FontSize="16" Width="200"/>
-            <Button Name="actProj_more_button" Margin="0,10,0,0" Content="More" Background="DodgerBlue" Width="120" Height="40" FontFamily="Calibri" FontSize="18"></Button>
+            <Button Name="actProj_more_button" Click="btnMoreProject" Margin="0,10,0,0" Content="More" Background="DodgerBlue" Width="120" Height="40" FontFamily="Calibri" FontSize="18"></Button>
             
-            <TextBlock Name="actProj_timer" Text="00:00" Foreground="White" HorizontalAlignment="Center"  TextAlignment="Center" FontSize="40" Width="200" Margin="0,70,0,0"/>
-            <Button Name="actProj_timer_button"
+            <TextBlock Name="actProj_timer" Text="0:0" Foreground="White" HorizontalAlignment="Center"  TextAlignment="Center" FontSize="40" Width="200" Margin="0,70,0,0"/>
+            <Button Name="actProj_timer_start" Click="btnStartSession" 
                     Width="150" Height="60" Background="Red">
                 <StackPanel>
-                    <Image Source="assets/start.png" Width="45"/>
+                    <Image Source="assets/play.png" Width="40"/>
                 </StackPanel>
             </Button>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Visibility="Collapsed" Name="panel_PauseStop">
+                    <Button Name="actProj_timer_pause" Click="btnPauseSession" Margin="0,0,0,0"
+                        Width="60" Height="60" Background="Yellow">
+                        <StackPanel>
+                            <Image Source="assets/pause.png"  Width="25"/>
+                        </StackPanel>
+                  </Button>
+                <Button Name="actProj_timer_stop" Click="btnStopSession" Margin="30,0,0,0"
+                        Width="60" Height="60" Background="OrangeRed">
+                    <StackPanel>
+                        <Image Source="assets/stop.png"  Width="25"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
             <TextBlock Margin="0,50,0,0" Text="Last session: 25.05.2025" Name="actProj_lastsession" Foreground="Gray" HorizontalAlignment="Center" FontSize="16" />
             <TextBlock Text="56:52" Name="actProj_lastsession_length" Foreground="Gray" HorizontalAlignment="Center" FontSize ="16"/>
             <TextBlock Name="actProj_progress" Text="45%" Foreground="White"  HorizontalAlignment="Center" FontSize="30" Height="40" Margin="0,50,0,0"/>
@@ -142,16 +190,16 @@
 
         </StackPanel>
         <StackPanel DockPanel.Dock="Bottom">
-            <TextBox Name="commandline"  Width="500" Height="60" FontSize="14" Foreground="DodgerBlue" Background="Black" TextWrapping="Wrap"
+            <TextBox Name="commandline"   Width="500" Height="60" FontSize="14" Foreground="DodgerBlue" Background="Black" TextWrapping="Wrap"
                      KeyUp="Prompt_Text_Event" />
         </StackPanel>
         <!--CENTER PANEL-->
         <Grid Name="CenterGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
-            <StackPanel Margin="0,0,0,0" Grid.Row="1">
+            <StackPanel Margin="0,0,0,0" Grid.Row="1" Visibility="Collapsed">
                 <Border BorderThickness="1" BorderBrush="White" Height="250" MaxWidth="500">
                     <TextBlock Name ="prompt" Text="{StaticResource prompt_string}" Foreground="White" FontSize="18"  HorizontalAlignment="Left"   VerticalAlignment="Bottom" Height="249" Width="500" Margin="0,-1,0,0"/>
                 </Border>

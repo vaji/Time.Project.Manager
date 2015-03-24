@@ -97,6 +97,7 @@ namespace Time.Project.Manager
                     if(value.name == findProj_Finder.SelectedItem.ToString()) 
                     {
                        Globals.activeProject.SetGlobalActive(value);
+                       Globals.mainView.ForceButtonClick(Globals.mainView.butHome);
                        break;
                     }
                 }

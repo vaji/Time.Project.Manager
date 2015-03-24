@@ -6,25 +6,41 @@
              mc:Ignorable="d" 
              d:DesignHeight="375" d:DesignWidth="650" Background="Black">
     <StackPanel>
-            
-        
-        <ListBox Name="log_box" HorizontalAlignment="Center" Width="450" Height="200" Background="LightGray" Margin="0,30,0,0"/>
+
+        <TextBlock Name="log_name" Text="Project 's' Log" Foreground="White" FontFamily="Calibri" FontSize="18" Margin="75,0,0,0"/>
+        <ListBox Name="log_box" HorizontalAlignment="Center" Width="450" Height="150" Background="LightGray" Margin="0,0,0,0"/>
         <TextBox Name="log_add_box" HorizontalAlignment="Center" Width="450" Background="LightGray" Margin="0,5,0,0"/>
-        <Button 
-                Click="btnAddEntry"
+        <StackPanel Orientation="Horizontal" Width="450" >
+            <Button 
+                Click="btnLoadLog"
                 BorderBrush="Black"               
                 FontFamily="Calibri"
                 FontSize="18"
                 x:Name="butEntry" 
+                Background="Orange"
+                Width="100"
+                Height="40"
+                Margin="240,5,0,0">
+                <StackPanel>
+                    <Image Source="assets/loadLog.png" Width="30"/>
+                </StackPanel>
+            </Button>
+            <Button 
+                Click="btnAddEntry"
+                BorderBrush="Black"               
+                FontFamily="Calibri"
+                FontSize="18"
+                x:Name="butLog" 
                 Background="LimeGreen"
                 Width="100"
                 Height="40"
-                HorizontalAlignment="Right"
-                Margin="10,5,100,10">
-            <StackPanel>
-                <Image Source="assets/new_project.png" Width="30"/>
-            </StackPanel>
-        </Button>
+                Margin="10,5,0,0">
+                <StackPanel>
+                    <Image Source="assets/addLog.png" Width="30"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+       
 
 
     </StackPanel>

@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="Time.Project.Manager.TaskManageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="460" d:DesignWidth="550" Background="Black">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <ListBox  Name="tasks_list" Grid.Row="1" HorizontalAlignment="Center" Width="450" Height="200"  FontFamily="Calibri" FontSize="16" Background="LightGray" Foreground="Black"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,60" Width="450" Grid.Row="2">
+            <Button 
+                Click="btnCompleteTask"
+                BorderBrush="Black"               
+                FontFamily="Calibri"
+                FontSize="18"
+                x:Name="butComplete" 
+                Background="Lime"
+                Width="100"
+                Height="40"
+                Margin="130,5,0,0">
+                <StackPanel>
+                    <Image Source="assets/accept.png" Width="30"/>
+                </StackPanel>
+            </Button>
+            
+            <Button 
+                Click="btnLoadTasks"
+                BorderBrush="Black"               
+                FontFamily="Calibri"
+                FontSize="18"
+                x:Name="butEntry" 
+                Background="Orange"
+                Width="100"
+                Height="40"
+                Margin="10,5,0,0">
+                <StackPanel>
+                    <Image Source="assets/loadLog.png" Width="30"/>
+                </StackPanel>
+            </Button>
+            <Button 
+                Click="btnRemoveTask"
+                BorderBrush="Black"               
+                FontFamily="Calibri"
+                FontSize="18"
+                x:Name="butLog" 
+                Background="Red"
+                Width="100"
+                Height="40"
+                Margin="10,5,0,0">
+                <StackPanel>
+                    <Image Source="assets/tasks_manage.png" Width="30"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

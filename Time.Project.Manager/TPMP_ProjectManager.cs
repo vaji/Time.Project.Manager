@@ -9,8 +9,28 @@ using System.IO;
 
 namespace Time.Project.Manager
 {
-    class TPMP_ProjectManager
+    sealed class TPMP_ProjectManager
     {
+        // singleton
+        private static readonly TPMP_ProjectManager m_oInstance = new TPMP_ProjectManager();
+
+        static TPMP_ProjectManager()
+        { 
+        
+        }
+        private TPMP_ProjectManager()
+        {
+
+        }
+
+        public static TPMP_ProjectManager Instance
+        {
+            get
+            {
+                return m_oInstance;
+            }
+        }
+
         public void Create_New_Project(string name, string type = "no-type", string desc = "no-desc")
         {
             if (Can_Create_Project(name)) 
@@ -19,7 +39,7 @@ namespace Time.Project.Manager
                 newProj.name = name;
                 newProj.type = type;
                 newProj.desc = desc;
-                newProj.time_spent = 0;
+                newProj.time_spent = new TimeSpan(0,0,0);
                 Globals.listProjects.Add(newProj);
 
                 Directory.CreateDirectory(Config.appDataPath + name);
@@ -40,13 +60,20 @@ namespace Time.Project.Manager
 
                 file = XmlWriter.Create(Config.appDataPath + name + "/sessions.xml");
                 file.WriteStartElement("sessions");
-                file.WriteEndElement();
+                file.WriteAttributeString("count", 0+"");
+                file.WriteString("");
                 file.WriteEndDocument();
                 file.Close();
 
                 file = XmlWriter.Create(Config.appDataPath + name + "/log.xml");
                 file.WriteStartElement("log");
+
+                file.WriteStartElement("entry");
+                file.WriteAttributeString("time", DateTime.Now.ToString());
+                file.WriteString("Created project");
                 file.WriteEndElement();
+
+                file.WriteString("");
                 file.WriteEndDocument();
                 file.Close();
 
@@ -56,11 +83,11 @@ namespace Time.Project.Manager
                 file2.WriteLine(name);
                 file2.Close();
 
-                Globals.prompt.Prompt_Text("Created new project called " + name + " of type " + type, true);
+                TPMP_Prompt.Instance.Prompt_Text("Created new project called " + name + " of type " + type, true);
             }
             else
             {
-                Globals.prompt.Prompt_Text("My apologies, sir, but there already exists project named " + name, true);
+                TPMP_Prompt.Instance.Prompt_Text("My apologies, sir, but there already exists project named " + name, true);
             }
         }
 
@@ -139,7 +166,7 @@ namespace Time.Project.Manager
             }
             else
             {
-                Globals.prompt.Prompt_Text("There is no such project named " + name + ", sir", true);
+                TPMP_Prompt.Instance.Prompt_Text("There is no such project named " + name + ", sir", true);
                 return false;
             }
             return true;
@@ -151,7 +178,7 @@ namespace Time.Project.Manager
             if (newRootPathDialog.ShowDialog() == DialogResult.OK)
             {
                 Config.rootFolderPath = newRootPathDialog.SelectedPath;
-                Globals.prompt.Prompt_Text("New path of root folder is: " + Config.rootFolderPath, true);
+                TPMP_Prompt.Instance.Prompt_Text("New path of root folder is: " + Config.rootFolderPath, true);
                 SaveConfig();
             }
         }
@@ -188,6 +215,26 @@ namespace Time.Project.Manager
                 XmlWriter createProjFile = XmlWriter.Create(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"HyperGear/projects.xml"));
                 createProjFile.Close();
 
+                XmlWriter createLastSessionFile = XmlWriter.Create(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "HyperGear/last_sessions.xml"));
+                createLastSessionFile.WriteStartDocument();
+                createLastSessionFile.WriteStartElement("last_sessions");
+                createLastSessionFile.WriteAttributeString("count", 0 + "");
+                createLastSessionFile.WriteEndDocument();
+                createLastSessionFile.Close();
+
+                XmlWriter createLastEntriesFile = XmlWriter.Create(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "HyperGear/last_entries.xml"));
+                createLastSessionFile.WriteStartDocument();
+                createLastSessionFile.WriteStartElement("last_entries");
+                createLastSessionFile.WriteAttributeString("count", 0 + "");
+                createLastSessionFile.WriteEndDocument();
+                createLastEntriesFile.Close();
+
+                XmlWriter createTasksFile = XmlWriter.Create(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "HyperGear/tasks.xml"));
+                createLastSessionFile.WriteStartDocument();
+                createLastSessionFile.WriteStartElement("tasks");
+                createLastSessionFile.WriteEndDocument();
+                createLastEntriesFile.Close();
+
                 MessageBox.Show("First time with HyperGear, Sir?", "Nice to meet you :)");
                 return false;
             }
@@ -212,7 +259,7 @@ namespace Time.Project.Manager
                 {
 
                     Config.rootFolderPath = loader.ReadElementString();
-                    Globals.prompt.Prompt_Text("found path in config: " + Config.rootFolderPath, true);
+                    TPMP_Prompt.Instance.Prompt_Text("found path in config: " + Config.rootFolderPath, true);
                     succeed = true; loader.Close();  break;
                 }
 

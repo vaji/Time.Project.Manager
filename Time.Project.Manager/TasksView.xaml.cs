@@ -16,23 +16,24 @@ using System.Windows.Shapes;
 namespace Time.Project.Manager
 {
     /// <summary>
-    /// Interaction logic for ManageView.xaml
+    /// Interaction logic for TasksView.xaml
     /// </summary>
-    public partial class ManageView : UserControl
+    public partial class TasksView : UserControl
     {
-        public ManageView()
+        public TasksView()
         {
             InitializeComponent();
         }
 
-        public void btnLogView(object sender, RoutedEventArgs e)
+        public void btnNewTask (object sender, RoutedEventArgs e)
         {
-            Globals.mainView.btnManageView_Log();
+            Globals.mainView.btnTasksView_New();
         }
 
-        private void butShowLog_Click(object sender, RoutedEventArgs e)
+        public void btnManageTasks (object sender, RoutedEventArgs e)
         {
-
+            Globals.mainView.btnTasksView_Manage();
+            Globals.taskManageView.btnLoadTasks(this, null);
         }
     }
 }

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Time.Project.Manager.MoreView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600" Background="Black">
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock  Text="55h" Name="stat_total_hours" Margin="30,30,30,30" FontFamily="Calibri"  HorizontalAlignment="Center" Foreground="White" FontSize="40"/>
+            <TextBlock  Text="total hours" FontFamily="Calibri" Margin="20,-40,20,0" Foreground="Gray" HorizontalAlignment="Center" FontSize="18"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock  Text="11" Name="stat_sessions_count" Margin="30" FontFamily="Calibri" Foreground="White" FontSize="40"  HorizontalAlignment="Center"/>
+            <TextBlock  Text="sessions" FontFamily="Calibri" Margin="10,-40,10,0" Foreground="Gray" FontSize="18" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock  Text="34" Name="stat_entries_count" Margin="30" FontFamily="Calibri" Foreground="White" FontSize="40"  HorizontalAlignment="Center"/>
+            <TextBlock  Text="entries" FontFamily="Calibri" Margin="10,-40,10,0" Foreground="Gray" FontSize="18" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <TextBlock  Text="34" Name="stat_session_duration_average" Margin="30" FontFamily="Calibri" Foreground="White" FontSize="40"  HorizontalAlignment="Center"/>
+            <TextBlock  Text="average session &#x0a;       duration" FontFamily="Calibri" Margin="10,-40,10,0" Foreground="Gray" FontSize="14" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock  Text="5h 3m" Name="stat_longest_session" Margin="10,30,10,10" FontFamily="Calibri" Foreground="White" FontSize="40"  HorizontalAlignment="Center"/>
+            <TextBlock  Text="longest session" FontFamily="Calibri" Margin="10,-20,10,0" Foreground="Gray" FontSize="16" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <TextBlock  Text="13%" Name="stat_last_week" Margin="0,30,0,10" FontFamily="Calibri" Foreground="White" FontSize="40"  HorizontalAlignment="Center"/>
+            <TextBlock  Text="last week" FontFamily="Calibri" Margin="5,-20,5,0" Foreground="Gray" FontSize="16" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

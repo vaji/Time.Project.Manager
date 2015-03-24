@@ -30,6 +30,7 @@
         </Button>
         <Button 
                 Grid.Column="2"
+                Click="btnLogView"
                 BorderBrush="Black"
                 FontFamily="Calibri"
                 FontSize="12"

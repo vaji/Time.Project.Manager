@@ -13,22 +13,47 @@ using System.IO;
 
 namespace Time.Project.Manager
 {
-    class TPMP_Prompt
+    sealed class  TPMP_Prompt
     {
+
+        // singleton
+        private static readonly TPMP_Prompt m_oInstance = new TPMP_Prompt();
+
+        // gui children
         public System.Windows.Controls.TextBlock prompt;
         public System.Windows.Controls.TextBox commandline;
-        private int prompt_lines_max = 11;
-        private int prompt_lines_used = 1;
+
+
+        // ****************
         private List<int> prompt_lines_length = new List<int>();
         private List<string> prompt_lines = new List<string>();
+
+        // ****************
+        // *** SETTINGS ***
+        // ****************
+        private int prompt_lines_max = 11;
+        private int prompt_lines_used = 1;
         private List<SolidColorBrush> prompt_lines_color = new List<SolidColorBrush>();
 
-        public TPMP_Prompt()
+        private TPMP_Prompt()
         {
             prompt = App.Current.MainWindow.FindName("prompt") as System.Windows.Controls.TextBlock;
             commandline = App.Current.MainWindow.FindName("commandline") as System.Windows.Controls.TextBox;
             prompt_lines_length.Add(23);
             prompt_lines_used = 1;
+        }
+
+        static TPMP_Prompt()
+        {
+
+        }
+
+        public static TPMP_Prompt Instance
+        {
+            get
+            {
+                return m_oInstance;
+            }
         }
 
         public void Prompt_Text(string txt, bool ai)
@@ -84,7 +109,7 @@ namespace Time.Project.Manager
             {
                 if (cmd.Substring(0, 3) == "new")
                 {
-                    Globals.projectManager.Create_New_Project(cmd.Substring(4, cmd.Length - 4));
+                    TPMP_ProjectManager.Instance.Create_New_Project(cmd.Substring(4, cmd.Length - 4));
                     is_cmd = true;
                 }
                 // set command
@@ -96,7 +121,7 @@ namespace Time.Project.Manager
                         if(cmd.Substring(4,cmd.Length-4) == "root_path")
                         {
                             is_cmd = true;
-                            Globals.projectManager.Set_New_Root_Path(); // this is fine.
+                            TPMP_ProjectManager.Instance.Set_New_Root_Path(); // this is fine.
                         
                         }
                     }
@@ -127,7 +152,7 @@ namespace Time.Project.Manager
                     }
                     if (succed)
                     {
-                        if (Globals.projectManager.DeleteProject(tmpName))
+                        if (TPMP_ProjectManager.Instance.DeleteProject(tmpName))
                         {
                             Prompt_Text("Deleted " + tmpName + " project", true);
                         }
